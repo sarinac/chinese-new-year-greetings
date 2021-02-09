@@ -1,0 +1,263 @@
+/*---------------- GENERAL STYLES ----------------*/ 
+
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+
+html {
+    height: 100%;
+}
+
+body {
+	font-family: "Montserrat", sans-serif;
+	background-color: #b61c1c;
+	color: #F1BF77;
+	margin: 0;
+}
+
+h1 {
+	font-family: "Pacifico", cursive;
+	font-size: 36px;
+	text-align: center;
+	margin: 6px;
+}
+
+/* h2 {
+	font-size: 24px;
+} */
+
+h3, a {
+	font-size: 12px;
+	text-align: center;
+	color: #F1BF77;
+}
+
+p, text {
+	font-family: "Montserrat", sans-serif;
+	font-size: 14px;
+	text-align: center;
+}
+
+text { 
+	text-anchor: middle;
+    alignment-baseline: middle;
+}
+
+.hidden {
+    opacity: 0%;
+	transition: 750ms;
+}
+
+/*---------------- CONTAINER ----------------*/ 
+
+.container-vertical {
+	display: flex;
+	flex-direction: column;
+	min-width: 300px;
+	max-width: 300px;
+}
+
+.container-horizontal {
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto;
+}
+
+div#message {
+	margin: 15px 20px 20px 20px;
+	padding: 15px;
+	border: 5px double #F1BF77;
+}
+
+/*---------------- BUTTON ----------------*/ 
+
+.button {
+	background-color: #b61c1c;
+	color: #F1BF77;
+	border: 1px solid #F1BF77;
+	border-radius: 20%;
+	outline: none;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	margin: 3px;
+}
+
+.button:hover {
+	background-color: #F1BF77;
+	color: #b61c1c;
+	transition: 300ms;
+}
+
+.selected, .button:hover {
+	background-color: #F1BF77;
+	color: #b61c1c;
+}
+
+/*---------------- IMAGE ----------------*/ 
+
+#greeting {
+	font-size: 94px;
+}
+
+img {
+	margin-top: 40px;
+	width: 100%;
+}
+
+/*---------------- CHINESE ----------------*/ 
+
+.chinese {
+	writing-mode: vertical-rl;
+	letter-spacing: -6px;
+}
+
+@font-face {
+	font-family: traditional;
+	src: url(chinese_traditional.ttf);
+ }
+ 
+@font-face {
+	font-family: simplified;
+	src: url(chinese_simplified.ttf);
+}
+ 
+.traditional {
+	font-family: traditional;
+	transform: translate(-2px, 0px);
+}
+
+.simplified {
+	font-family: simplified;
+}
+
+/* ----------- COLORS ----------- */
+
+.red {
+    fill: #EF1635;
+}
+
+.gold {
+    fill: #F1BF77;
+}
+/* rect, path, */
+.black {
+    fill: #333333;
+}
+
+.shadow {
+    opacity: 40%;
+}
+
+
+/* ----------- TILES ----------- */
+
+rect.tile {
+    fill: #C12727;
+    stroke: #F1BF77;
+    stroke-width: 2px;
+}
+
+text.tile {
+    fill: #F1BF77;
+	letter-spacing: 2px;
+}
+
+g.tile:hover rect.tile, rect.tile-hover {
+	fill: #F1BF77;
+	stroke: #F1BF77;
+	letter-spacing: 2px;
+	transition: fill 750ms;
+}
+
+g.tile:hover text.tile, text.tile-hover{
+	fill: #C12727;
+	letter-spacing: 2px;
+	transition: fill 750ms;
+}
+
+/* ----------- LINKS ----------- */
+
+path.link  {
+    stroke: #F1BF77;
+	stroke-width: 1px;
+	stroke-opacity: 60%;
+	stroke-linecap: round;
+	fill: #F1BF77;
+	fill-opacity: 60%;
+}
+
+.visible {
+	opacity: 100%;
+	transition: 750ms;
+}
+
+/* ----------- LANTERNS ----------- */
+
+text.english {
+	font-family: "Pacifico", cursive;
+	text-anchor: start;
+}
+
+/* ----------- TOOLTIP ----------- */
+
+.tooltip-hidden {
+	opacity: 0%;
+	transition: opacity 300ms;
+}
+
+.tooltip-visible {
+	opacity: 90%;
+	transition: opacity 300ms;
+}
+
+#tooltip-back {
+	fill: #f5dcbc;
+	stroke: #C12727;
+	stroke-width: 2px;
+}
+
+#tooltip-line {
+	stroke: #b61c1c;
+	/* stroke: #333333; */
+	stroke-width: 1px;
+	stroke-linecap: square;
+}
+
+#tooltip-phrase {
+	text-anchor: middle;
+	alignment-baseline: baseline;
+	font-size: 36px;
+}
+
+.tooltip-pinyin {
+	font-family: "Pacifico", cursive;
+	font-size: 12px;
+	text-anchor: middle;
+	alignment-baseline: hanging;
+}
+
+#tooltip-prefix {
+	font-family: "Pacifico", cursive;
+	font-size: 10px;
+	/* fill: #b61c1c; */
+	opacity: 70%;
+	text-anchor: middle;
+	alignment-baseline: baseline;
+}
+
+#tooltip-translation {
+	font-family: "Pacifico", cursive;
+	font-size: 16px;
+	text-anchor: middle;
+	alignment-baseline: baseline;
+}
+
+.tooltip-annotation {
+	font-family: "Montserrat", sans-serif;
+	font-size: 12px;
+	text-anchor: start;
+}
