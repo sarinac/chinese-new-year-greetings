@@ -1,10 +1,11 @@
 class Tile {
 
-    constructor(svg, data) {
+    constructor(svg, dimensions, data) {
         
         this.svg = svg;
-        this.width = parseFloat(svg.style("width"));
-        this.height = parseFloat(svg.style("height"));
+        this.width = dimensions.width;
+        this.height = dimensions.height;
+        this.topSpace = dimensions.topSpace;
         this.data = data;
 
         this.draw();
@@ -63,11 +64,11 @@ class Tile {
 
         this.tileX = d3.scaleLinear()
             .domain([0, 14])
-            .range([this.width * .10, this.width * .90]); // Left X of tile
+            .range([this.width * .05, this.width * .85]); // Left X of tile
 
         this.tileY = d3.scaleLinear()
             .domain([0, 1])
-            .range([this.height * .70 , this.height * .85]); // Top Y of tile
+            .range([this.topSpace + this.height * .70 , this.topSpace + this.height * .85]); // Top Y of tile
 
         this.tileWidth = .85 * (this.tileX(1) - this.tileX(0));
         this.tileHeight = .90 * (this.tileY(1) - this.tileY(0));

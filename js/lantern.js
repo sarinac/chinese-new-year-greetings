@@ -1,10 +1,11 @@
 class Lantern {
 
-    constructor(svg, data) {
+    constructor(svg, dimensions, data) {
         
         this.svg = svg;
-        this.width = parseFloat(svg.style("width"));
-        this.height = parseFloat(svg.style("height"));
+        this.width = dimensions.width;
+        this.height = dimensions.height;
+        this.topSpace = dimensions.topSpace;
         this.data = data;
 
         this.draw();
@@ -51,11 +52,11 @@ class Lantern {
 
         this.lanternX = d3.scaleLinear()
             .domain([0, this.data.lanterns.length])
-            .range([this.width * .15, this.width * .85]);
+            .range([this.width * .08, this.width * .85]);
 
         this.lanternY = d3.scaleSqrt()
             .domain([d3.min(this.data.lanterns, d => d.count), d3.max(this.data.lanterns, d => d.count)])
-            .range([this.height * .30, this.height * .50]); // This is the latern's lowest Y
+            .range([this.topSpace + this.height * .30, this.topSpace + this.height * .50]); // This is the latern's lowest Y
 
         this.lanternBodyHeight = (d) => {
             return d.chinese_simplified.length * 30 + 30;
@@ -76,7 +77,7 @@ class Lantern {
             .attr("x", (d, i) => this.lanternX(i) - cordWidth / 2)
             .attr("y", -this.buffer)
             .attr("width", cordWidth)
-            .attr("height", d => this.lanternY(d.count) + (d.last_intonation === 1 || d.last_intonation === 2 ? this.buffer : 0))
+            .attr("height", d => this.buffer + this.lanternY(d.count) - (d.first_intonation === 1 || d.first_intonation === 2 ? 0 : 30))
             .attr("class", obj === this.lanternsFront ? "red" : "");
         
     }
@@ -111,7 +112,7 @@ class Lantern {
     }
 
     drawTassel(obj) {
-        // last word's intonation determines if lantern has tassels
+        // first word's intonation determines if lantern has tassels
         // 1: has gold, short tassel
         // 2: has red, long tassel
         // 3: no tassel
@@ -123,15 +124,15 @@ class Lantern {
             tasselBottomWidth = 18,
             mintasselHeight = 25;
 
-        obj.filter(d => d.last_intonation === 1 || d.last_intonation === 2).append("circle")
+        obj.filter(d => d.first_intonation === 1 || d.first_intonation === 2).append("circle")
             .attr("cx", (d, i) => this.lanternX(i))
             .attr("cy", d => this.lanternY(d.count))
             .attr("r", radius)
             .attr("class", obj === this.lanternsFront ? "gold" : "");
         
-        obj.filter(d => d.last_intonation === 1 || d.last_intonation === 2).append("path")
+        obj.filter(d => d.first_intonation === 1 || d.first_intonation === 2).append("path")
             .attr("d", (d, i) => {
-                let tasselHeight = d.last_intonation * mintasselHeight;
+                let tasselHeight = d.first_intonation * mintasselHeight;
                 return [
                     `M${this.lanternX(i) - tasselTopWidth},${this.lanternY(d.count) + tasselTopWidth*1.6} `,
                     `l${tasselTopWidth*2},0 `,
@@ -147,11 +148,11 @@ class Lantern {
                 if (obj != this.lanternsFront) {
                     return "";
                 } else {
-                    return d.last_intonation === 1 ? "gold" : "red";
+                    return d.first_intonation === 1 ? "gold" : "red";
                 }
             });
 
-        obj.filter(d => d.last_intonation === 1 || d.last_intonation === 2).append("rect")
+        obj.filter(d => d.first_intonation === 1 || d.first_intonation === 2).append("rect")
             .attr("x", (d, i) => this.lanternX(i) - tasselTopWidth)
             .attr("y", d => this.lanternY(d.count) + tasselTopWidth*.75)
             .attr("width", tasselTopWidth * 2)
@@ -295,7 +296,7 @@ class Lantern {
     }
 
     get buffer() {
-        return 100;
+        return this.topSpace + 20;
     }
 }
 

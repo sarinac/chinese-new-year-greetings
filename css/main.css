@@ -12,30 +12,30 @@ body {
 	font-family: "Montserrat", sans-serif;
 	background-color: #b61c1c;
 	color: #F1BF77;
+	text-align: center;
 	margin: 0;
 }
 
 h1 {
 	font-family: "Pacifico", cursive;
 	font-size: 36px;
-	text-align: center;
 	margin: 6px;
 }
 
-/* h2 {
-	font-size: 24px;
-} */
+h2 {
+	font-size: 18px;
+}
 
-h3, a {
+h3 {
 	font-size: 12px;
-	text-align: center;
+}
+
+a {
 	color: #F1BF77;
 }
 
 p, text {
-	font-family: "Montserrat", sans-serif;
 	font-size: 14px;
-	text-align: center;
 }
 
 text { 
@@ -50,9 +50,14 @@ text {
 
 /*---------------- CONTAINER ----------------*/ 
 
+.container {
+	margin: 0 auto;
+	max-width: 1300px;
+}
+
 .container-vertical {
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	min-width: 300px;
 	max-width: 300px;
 }

@@ -3,31 +3,34 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="google" content="notranslate">
+    <meta property="og:image" content="" />
 	<title>Chinese New Year Greetings</title>
 	<link href="css/main.css" rel="stylesheet" type="text/css">
     <script src="https://d3js.org/d3.v6.min.js"></script>
 	<script type= "module" src="js/main.js"></script>
 </head>
 <body>
-	<div class="container-horizontal">
-        <div id="chart"></div>
-        <div class="container-vertical">
-            <div id="logo">
-                <img src="data/ox.png" alt="ox">
-            </div>
-            <h1>Happy Chinese New Year!</h1>
-            <div class="container-horizontal">
-                <button id="button-simplified" class="button">简</button>
-                <button id="button-traditional" class="button selected">繁</button>
-            </div>
-            <div id="message">
-                <p>Chinese New Year, or Spring Festival, is the most important holiday in Chinese culture.</p>
-                <p>On the first 15 days of the lunar calendar year, extended families gather together to exchange gifts, including money and food.</p>
-                <p>As part of tradition, everyone shares New Years greetings. 
-                    These well-known phrases (written in tiles) describe common wishes (shown on lanterns). Hover over the objects to learn more. </p>
-                <h3>Drawn by <a href="https://ifcolorful.com">Sarina Chen</a></h3>
-            </div>
-        </div> 
+    <div class="container">
+        <div class="container-horizontal">
+            <div id="chart"></div>
+            <div class="container-vertical">
+                <div id="message">
+                    <p>Chinese New Year, or Spring Festival, is the most important holiday in Chinese culture.</p>
+                    <p>On the first 15 days of the lunar calendar year, extended families gather together to exchange gifts, including money and food.</p>
+                    <p>As part of tradition, everyone shares New Years greetings. 
+                        These well-known phrases (written in tiles) describe common wishes (shown on lanterns). Hover over the objects to learn more. </p>
+                    <h3>Drawn by <a href="https://ifcolorful.com">Sarina Chen</a></h3>
+                </div>
+                <div class="container-horizontal">
+                    <button id="button-simplified" class="button">简</button>
+                    <button id="button-traditional" class="button selected">繁</button>
+                </div>
+                <h1>Happy Chinese New Year!</h1>
+                <div id="logo">
+                    <img src="data/ox.png" alt="ox">
+                </div>
+            </div> 
+        </div>
     </div>
 	
 </body>

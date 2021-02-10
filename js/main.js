@@ -3,14 +3,16 @@ import BumpChart from "./bumpchart.js"
 import Tile from "./tile.js"
 
 // Set dimensions
-let height = 800,
-    width = 1000;
+let dimensions = {};
+dimensions.height = 800;
+dimensions.width = 1000;
+dimensions.topSpace = Math.max(0, (window.innerHeight - dimensions.width) * .60);
 
 // Create SVG
 let svg = d3.select("#chart")
     .append("svg")
-        .attr("width", width)
-        .attr("height", height);
+        .attr("width", dimensions.width)
+        .attr("height", dimensions.topSpace + dimensions.height);
 
 // Add text
 svg
@@ -19,8 +21,8 @@ svg
         .classed("gold", true)
         .classed("chinese", true)
         .classed("traditional", true)
-        .attr("x", width * .88)
-        .attr("y", height * .3)
+        .attr("x", dimensions.width * .88)
+        .attr("y", dimensions.topSpace + dimensions.height * .3)
         .text("新年快乐");
 
 // Read data
@@ -60,9 +62,9 @@ d3.json("data/data.json")
         }
 
         // Create objects
-        let lanterns = new Lantern(svg, data);
-        let tiles = new Tile(svg, data);
-        let bumpChart = new BumpChart(svg, data, lanterns, tiles);
+        let lanterns = new Lantern(svg, dimensions, data);
+        let tiles = new Tile(svg, dimensions, data);
+        let bumpChart = new BumpChart(svg, dimensions, data, lanterns, tiles);
 
         // Switch characters
         let chineseSwitch = (to) => {
@@ -79,4 +81,4 @@ d3.json("data/data.json")
         d3.select("#button-traditional").on("click", () => chineseSwitch("traditional"));
 
     })
-    // .catch((error) => console.error(`Error loading data : ${error}`));
+    .catch((error) => console.error(`Error loading data : ${error}`));

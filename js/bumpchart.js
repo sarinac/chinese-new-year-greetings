@@ -1,10 +1,11 @@
 class BumpChart {
 
-    constructor(svg, data, lanterns, tiles) {
+    constructor(svg, dimensions, data, lanterns, tiles) {
         
         this.svg = svg;
-        this.width = parseFloat(svg.style("width"));
-        this.height = parseFloat(svg.style("height"));
+        this.width = dimensions.width;
+        this.height = dimensions.height;
+        this.topSpace = dimensions.topSpace;
         this.data = data;
         this.lanterns = lanterns;
         this.tiles = tiles;
@@ -38,7 +39,7 @@ class BumpChart {
                             bottomX = tile.x + tile.width / 2,
                             bottomY = d3.select("#tiles").node().getBBox().y - 5,
                             midY = topY + (bottomY - topY) * .60,
-                            controlY = this.height / 2 + (bottomY - this.height / 2) / 2;
+                            controlY = this.topSpace + this.height / 2 + (bottomY - (this.topSpace + this.height / 2)) / 2;
                         let angle = Math.atan(bottomX - topX, bottomY - topY),
                             spacing = 8,
                             spacingX = Math.cos(Math.PI / 2 - angle) * spacing,
